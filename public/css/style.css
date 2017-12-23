@@ -5,17 +5,20 @@ html, body {
     margin: 0;
 }
 
-h1{
-    margin-top:80px;
+h1 {
+    margin-top: 80px;
 }
+
 .flex-center {
     align-items: center;
     display: flex;
     justify-content: center;
 }
-#add-form{
-    color:#fff;
+
+#add-form {
+    color: #fff;
 }
+
 .position-ref {
     position: relative;
 }
@@ -34,12 +37,6 @@ h1{
     font-size: 84px;
 }
 
-
-div{
-
-    color:#000;
-}
-
 .links > a {
     color: #636b6f;
     padding: 0 25px;
@@ -53,43 +50,52 @@ div{
 .m-b-md {
     margin-bottom: 30px;
 }
-.kontakt div{
+
+.kontakt div {
     margin-bottom: 15px;
 }
 
 .crudCont {
     padding: 70px 40px;
 }
+
 .crudForm {
     margin: 30px 0;
     background: #3b4f63;
-    box-shadow:inset 0px 0px 7px 1px rgba(0, 0, 0, 0.55);
+    box-shadow: inset 0px 0px 7px 1px rgba(0, 0, 0, 0.55);
 }
-.crudForm form{
+
+.crudForm form {
     max-width: 800px;
     display: block;
     margin: 0 auto;
-    color:#000;
+    color: #000;
 }
-.crudForm form .btn{
+
+.crudForm form .btn {
     margin-top: 25px;
 }
-.grid{
+
+.grid {
     margin-left: 0;
     padding-left: 0;
 }
-.grid li{
+
+.grid li {
     list-style: none;
     margin-left: 0;
 }
-.btn.btn-outline-warning{
+
+.btn.btn-outline-warning {
     margin-right: 5px;
 }
-.shadow-top{
+
+.shadow-top {
     box-shadow: 0px 5px 3px -3px rgba(0, 0, 0, 0.55);
 
 }
-body{
-    background:#3B4F63;
-    color:#fff;
+
+body {
+    background: #3B4F63;
+    color: #fff;
 }

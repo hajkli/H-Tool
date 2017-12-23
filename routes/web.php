@@ -49,6 +49,10 @@ Route::get('{locale}/archive',   function ($locale) {
 Route::get('/sk/task/edit/{task}', 'TaskController@edit');
 
 
+
+Route::delete('/api/task/delete', 'TaskController@deleteApi');
+
+
 Route::get('/{locale}/task/delete/{task_id}',   function ($locale, $task_id) {
   App::setLocale($locale);
   return app()->make('\App\Http\Controllers\TaskController')->callAction('destroy', $parameters = ['id' => $task_id]);
@@ -58,6 +62,10 @@ Route::get('/{locale}/task/restore/{task_id}',   function ($locale, $task_id) {
   App::setLocale($locale);
   return app()->make('\App\Http\Controllers\TaskController')->callAction('restore', $parameters = ['id' => $task_id]);
 });
+
+
+Route::put('/api/task/update', 'TaskController@updateApi');
+
 
 Route::any('/{locale}/task/update',   function ($locale,Request  $request) {
   App::setLocale($locale);

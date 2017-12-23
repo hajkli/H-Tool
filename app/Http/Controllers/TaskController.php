@@ -10,17 +10,17 @@ class TaskController extends Controller
 {
 
 
-//    public function __construct(){
-//
-//            session_start();
-//
-//        if(isset($_SESSION["isLogged"])){
-//                return true;
-//            } else {
-//                header('Location: /sk/login');
-//                exit();
-//            }
-//    }
+    public function __construct(){
+
+            session_start();
+
+        if(isset($_SESSION["isLogged"])){
+                return true;
+            } else {
+                header('Location: /sk/login');
+                exit();
+            }
+    }
 
 
     /**
@@ -166,6 +166,22 @@ class TaskController extends Controller
         }
     }
 
+    public function updateApi(Request $request)
+    {
+
+        $tasks =\App\Task::find($request->input('id'));
+
+        $tasks->name = $request->input('name');
+        $tasks->desc = $request->input('desc');
+
+        if($tasks->validate() && $tasks->save()){
+            return json_encode(array('status' => 'succes'));
+
+        }else{
+            return json_encode(array('status' => 'error'));
+        }
+    }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -187,6 +203,19 @@ class TaskController extends Controller
 
 
     }
+    public function deleteApi(Request $request)
+    {
+    $tasks =\App\Task::where('id' ,$request->input('id'))->first();
+    $tasks->isActive = '0';
+
+    if($tasks->save()){
+        return json_encode(array('status' => 'succes'));
+    }else{
+        return json_encode(array('status' => 'error'));
+    }
+
+
+}
 
     public function restore($id)
     {

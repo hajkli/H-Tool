@@ -5,13 +5,15 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
     <script src="{{ asset('awesome-grid-master/awesome-grid.min.js') }}"></script>
 
     <title>@yield('title')</title>
@@ -28,36 +30,57 @@
 </head>
 <body>
 <span style="display: none">
-    {{session_start()}}
 </span>
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <a class="navbar-brand" href="/sk/">SuperTask</a>
-    <div class="collapse navbar-collapse" id="navbarColor01">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="/sk/listall">List all </a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="/sk/task/create">Create new</a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="/sk/archive">Archive</a>
-            </li>
-            <li class="nav-item active">
+<nav class="navbar navbar-default navbar-static" id="navbar-example">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button class="collapsed navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-example-js-navbar-collapse"><span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span></button>
 
-                @if (isset($_SESSION["isLogged"]))
-                    <a class="nav-link" href="/sk/logout">Logout</a>
 
-                @else
+        <a href="/sk/" class="navbar-brand">H-Tool</a></div>
+        <div class="collapse navbar-collapse bs-example-js-navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" id="drop1" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Taks <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="drop1">
+                        <li>
+                            <a href="/sk/listall">List all </a>
+                        </li>
+                        <li>
+                            <a href="/sk/task/create">Create new</a>
+                        </li>
+                        <li>
+                            <a href="/sk/archive">Archive</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" id="drop2" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Invoice <span class="caret"></span> </a>
+                    <ul class="dropdown-menu" aria-labelledby="drop2">
+                        <li>
+                            <a href="/sk/listall">List all </a>
+                        </li>
+                        <li>
+                            <a href="/sk/task/create">Create new</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    @if (isset($_SESSION["isLogged"]))
+                        <a class="nav-link" href="/sk/logout">Logout</a>
+
+                    @else
                         <a class="nav-link" href="/sk/login">Login</a>
 
-                @endif
+                    @endif
 
-            </li>
-        </ul>
+                </li>
+            </ul>
+
+        </div>
     </div>
 </nav>
-
 
 
 @yield('content')

@@ -25,33 +25,19 @@ Route::get('/{locale}',   function ($locale) {
   return app()->make('\App\Http\Controllers\TaskController')->callAction('index', $parameters = array());
 });
 
-Route::get('/api/listall', 'TaskController@ListAllApi');
-
+/* Tasks */
 
 Route::get('{locale}/listall',   function ($locale) {
   App::setLocale($locale);
   return app()->make('\App\Http\Controllers\TaskController')->callAction('listAll', $parameters = array());
 });
 
-
-Route::get('/api/archive', 'TaskController@ArchiveApi');
-
-
 Route::get('{locale}/archive',   function ($locale) {
   App::setLocale($locale);
   return app()->make('\App\Http\Controllers\TaskController')->callAction('archive', $parameters = array());
 });
-//
-//Route::get('/{locale}/task/edit/{task}',   function ($locale, $task) {
-//  App::setLocale($locale);
-//  return app()->make('\App\Http\Controllers\TaskController')->callAction('edit', $parameters = ['id' => $task]);
-//});
+
 Route::get('/sk/task/edit/{task}', 'TaskController@edit');
-
-
-
-Route::delete('/api/task/delete', 'TaskController@deleteApi');
-
 
 Route::get('/{locale}/task/delete/{task_id}',   function ($locale, $task_id) {
   App::setLocale($locale);
@@ -63,10 +49,6 @@ Route::get('/{locale}/task/restore/{task_id}',   function ($locale, $task_id) {
   return app()->make('\App\Http\Controllers\TaskController')->callAction('restore', $parameters = ['id' => $task_id]);
 });
 
-
-Route::put('/api/task/update', 'TaskController@updateApi');
-
-
 Route::any('/{locale}/task/update',   function ($locale,Request  $request) {
   App::setLocale($locale);
   return app()->make('\App\Http\Controllers\TaskController')->callAction('update', $parameters = ['request' => $request]);
@@ -77,15 +59,26 @@ Route::get('/{locale}/task/create',   function ($locale) {
   return app()->make('\App\Http\Controllers\TaskController')->callAction('create', $parameters = []);
 });
 
-Route::post('/api/task/store', 'TaskController@storeApi');
-
 Route::post('/{locale}/task/store',   function ($locale, Request  $request) {
   App::setLocale($locale);
   return app()->make('\App\Http\Controllers\TaskController')->callAction('store', $parameters = ['request' => $request]);
 });
 
 
-// User routes
+/* Tasks API */
+Route::get('/api/listall', 'TaskController@ListAllApi');
+
+Route::get('/api/archive', 'TaskController@ArchiveApi');
+
+Route::delete('/api/task/delete', 'TaskController@deleteApi');
+
+Route::put('/api/task/update', 'TaskController@updateApi');
+
+Route::post('/api/task/store', 'TaskController@storeApi');
+
+
+
+/* User management */
 
 Route::get('/{locale}/login',   function ($locale) {
   App::setLocale($locale);
@@ -103,5 +96,19 @@ Route::get('/{locale}/logout',   function ($locale) {
   return app()->make('\App\Http\Controllers\UserController')->callAction('logout', $parameters = array());
 });
 
+/* Invoice  */
 
+Route::get('{locale}/invoice/listall',   function ($locale) {
+  App::setLocale($locale);
+  return app()->make('\App\Http\Controllers\InvoiceController')->callAction('listAll', $parameters = array());
+});
 
+Route::get('{locale}/invoice/create',   function ($locale) {
+  App::setLocale($locale);
+  return app()->make('\App\Http\Controllers\InvoiceController')->callAction('create', $parameters = array());
+});
+
+Route::post('/{locale}/invoice/store',   function ($locale, Request  $request) {
+  App::setLocale($locale);
+  return app()->make('\App\Http\Controllers\TaskController')->callAction('store', $parameters = ['request' => $request]);
+});

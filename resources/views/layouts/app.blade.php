@@ -62,7 +62,7 @@
                             <a href="/sk/invoice/listall">List invoices</a>
                         </li>
                         <li>
-                            <a href="/sk/task/create">Create new invoice</a>
+                            <a href="/sk/invoice/create">Create new invoice</a>
                         </li>
                         <li>
                             <a href="/sk/customer/listall">List customers</a>

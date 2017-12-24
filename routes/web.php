@@ -105,10 +105,10 @@ Route::get('{locale}/invoice/listall',   function ($locale) {
 
 Route::get('{locale}/invoice/create',   function ($locale) {
   App::setLocale($locale);
-  return app()->make('\App\Http\Controllers\InvoiceController')->callAction('create', $parameters = array());
+  return app()->make('\App\Http\Controllers\InvoiceController')->callAction('create', $parameters = []);
 });
 
 Route::post('/{locale}/invoice/store',   function ($locale, Request  $request) {
   App::setLocale($locale);
-  return app()->make('\App\Http\Controllers\TaskController')->callAction('store', $parameters = ['request' => $request]);
+  return app()->make('\App\Http\Controllers\InvoiceController')->callAction('store', $parameters = ['request' => $request]);
 });

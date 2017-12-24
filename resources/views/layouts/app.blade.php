@@ -59,10 +59,16 @@
                     <a href="#" class="dropdown-toggle" id="drop2" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Invoice <span class="caret"></span> </a>
                     <ul class="dropdown-menu" aria-labelledby="drop2">
                         <li>
-                            <a href="/sk/listall">List all </a>
+                            <a href="/sk/invoice/listall">List invoices</a>
                         </li>
                         <li>
-                            <a href="/sk/task/create">Create new</a>
+                            <a href="/sk/task/create">Create new invoice</a>
+                        </li>
+                        <li>
+                            <a href="/sk/customer/listall">List customers</a>
+                        </li>
+                        <li>
+                            <a href="/sk/customer/create">Create new customer</a>
                         </li>
                     </ul>
                 </li>

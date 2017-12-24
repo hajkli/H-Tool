@@ -41,20 +41,19 @@
             <ul class="grid">
                 @foreach($data as $task => $value)
                     <li>
-                        <div id="item{{$value->id}}" class='card border-light'>
-                            <h2 class='card-header'>{{ $value->name }}</h2>
-                            <div class='card-body'>
+                        <div id="item{{$value->id}}" class="panel panel-default">
+                            <div class="panel-heading">{{ $value->name }}</div>
+                            <div class="panel-body">
                                 {{ $value->desc }}
                             </div>
-                            <div class="card-footer text-muted">
-                                {{--<a href="{{ URL::to('/sk/task/edit/' . $value->id) }}" class="btn btn-outline-warning">update</a>--}}
-                                {{--<a href="{{ URL::to('/sk/task/delete/' . $value->id) }}" class="btn btn-outline-danger">delete</a>--}}
+                            <div class="panel-footer">
                                 <a href="{{ URL::to('/sk/task/restore/' . $value->id) }}" class="btn btn-outline-warning">Restore</a>
                             </div>
                         </div>
-                    </li>
+                     </li>
                 @endforeach
             </ul>
+
         </div>
     </div>
 </div>

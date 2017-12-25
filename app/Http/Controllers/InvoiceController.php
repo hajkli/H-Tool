@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 //use App\Task;
 use Illuminate\Http\Request;
-
-
+use PDF;
+use Illuminate\Support\Facades\Storage;
 class InvoiceController extends Controller
 {
 
@@ -61,8 +61,14 @@ class InvoiceController extends Controller
      */
     public function create()
     {
+        $currentYear =  date("y");
+        $count = \App\Invoice::where('isActive', 1)->count();
+            if($count <= 9){
+                $count = '0'.$count;
+            }
 
-        return view('create_invoice');
+        $newCode = $currentYear.''.$count ;
+        return view('create_invoice',['data' => $newCode]);
     }
 
     /**
@@ -74,42 +80,54 @@ class InvoiceController extends Controller
     public function store(Request $request)
     {
         $invoices = new \App\Invoice();
+
         $invoices->name = $request->input('name');
-        $invoices->name = $request->input('items');
-        $invoices->name = $request->input('price');
-        $invoices->name = $request->input('date_of_invoicing');
-        $invoices->name = $request->input('due_date');
-        $invoices->name = $request->input('code');
+        $invoices->items = $request->input('items');
+        $invoices->price = $request->input('price');
+        $invoices->date_of_invoicing = $request->input('date_of_invoicing');
+        $invoices->due_date = $request->input('due_date');
+        $invoices->code = $request->input('code');
+        $invoices->symbol = $request->input('symbol');
 
-        $invoices->name = $request->input('customer');
-        $invoices->name = $request->input('name');
-        $invoices->name = $request->input('street');
-        $invoices->name = $request->input('city');
-        $invoices->name = $request->input('zip');
-        $invoices->name = $request->input('ico');
-        $invoices->name = $request->input('dic');
-        $invoices->name = $request->input('dic-dph');
-
-
-
+        $invoices->customer = $request->input('customer');
+        $invoices->nameCustomer = $request->input('nameCustomer');
+        $invoices->street = $request->input('street');
+        $invoices->city = $request->input('city');
+        $invoices->zip = $request->input('zip');
+        $invoices->ico = $request->input('ico');
+        $invoices->dic = $request->input('dic');
+        $invoices->dic_dph = $request->input('dic-dph');
 
 
 
-
-        if($invoices->validate() && $invoices->save()){
-            return redirect('/sk/listall')->with('status', 'created');
+        if($invoices->save()){
+            PDF::loadView('invoice_pdf', compact('invoices'))->save("../storage/invoices/$invoices->code.pdf")->stream("$invoices->code.pdf");
+            return redirect("/sk/invoice/$invoices->id ")->with('status', 'succes');
         }else{
-            return redirect("/sk/task/create")->with('status', 'not_created');
-        }   
+            return redirect("/sk/invoice/create")->with('status', 'not_created');
+        }
     }
 
-    public function edit(\App\Invoice $task)
+    public function download($id)
+    {
+        $invoices = \App\Invoice::find($id);
+
+
+//        $url = Storage::url("$invoices->code.pdf")->download();
+//        return $url;
+
+        $path = storage_path("invoices/$invoices->code.pdf");
+        return response()->download($path);
+
+    }
+
+    public function detail(\App\Invoice $invoiceId)
     {
 
 
 //        $invoices = \App\Invoice::where('id' , $id)->first();
-            if(isset($task)){
-                return view('edit-task',['model' => $task]);
+            if(isset($invoiceId)){
+                return view('invoice_detail',['invoices' => $invoiceId]);
             } else {
                 return redirect('/sk/');
             }

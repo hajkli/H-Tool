@@ -105,10 +105,19 @@ Route::get('{locale}/invoice/listall',   function ($locale) {
 
 Route::get('{locale}/invoice/create',   function ($locale) {
   App::setLocale($locale);
-  return app()->make('\App\Http\Controllers\InvoiceController')->callAction('create', $parameters = array());
+  return app()->make('\App\Http\Controllers\InvoiceController')->callAction('create', $parameters = []);
 });
+
+
+
+Route::get('/sk/invoice/{invoiceId}', 'InvoiceController@detail'); //invoice detail
+
+Route::get('/sk/invoice/{invoiceId}/download', 'InvoiceController@download'); //invoice pdf downloader
+
+
+
 
 Route::post('/{locale}/invoice/store',   function ($locale, Request  $request) {
   App::setLocale($locale);
-  return app()->make('\App\Http\Controllers\TaskController')->callAction('store', $parameters = ['request' => $request]);
+  return app()->make('\App\Http\Controllers\InvoiceController')->callAction('store', $parameters = ['request' => $request]);
 });

@@ -108,13 +108,13 @@ Route::get('{locale}/invoice/create',   function ($locale) {
   return app()->make('\App\Http\Controllers\InvoiceController')->callAction('create', $parameters = []);
 });
 
-
-
 Route::get('/sk/invoice/{invoiceId}', 'InvoiceController@detail'); //invoice detail
 
 Route::get('/sk/invoice/{invoiceId}/download', 'InvoiceController@download'); //invoice pdf downloader
 
+Route::get('/sk/invoice/{invoiceId}/preview', 'InvoiceController@preview'); //invoice pdf preview before download
 
+Route::get('/sk/invoice/{invoiceId}/export', 'InvoiceController@export'); //invoice pdf preview before download
 
 
 Route::post('/{locale}/invoice/store',   function ($locale, Request  $request) {

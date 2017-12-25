@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.print')
 
 @section('title', 'Invoice detail')
 
@@ -10,78 +10,150 @@
         html, body {
             font-family: 'DejaVu Sans', sans-serif;
             font-weight: 400;
-            margin: 0;
-            background: #222222;
-            color: #fff;
+            font-size:14px;
+            background: #fff;
+            color: #000;
+        }
+        h1{
+            font-size: 12px;
+            padding: 9px 0;
+            margin:  0 0 0 0;
+            border-top:1px solid black;
+            border-bottom:1px solid black;
+        }
+        .mainTable.last{
+            margin-top: 60px;
+        }
+        .mainTable, .itemsTable{
+            width: 100%;
+            vertical-align: top;
+        }
+        .mainTable td.main{
+            width: 50%;
+        }
+        .itemsTable{
+            margin-top: 32px;
+        }
+        .itemsTable td {
+            padding: 6px;
+            border-bottom: 1px solid black;
+        }
+        .itemsTable tfoot, .itemsTable thead{
+            font-weight: 700;
+        }
+        .tight{
+            width: 10%;
+        }
+        td.name{
+            width: 65%;
         }
     </style>
 
-<div class="container">
-    <div class="row">
-        <div class="col-sm-12">
-            <h1>Invoice detail: {{$invoices->code}}</h1>
-        </div>
-        <div class="col-md-6">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Customer detail</h3>
-                </div>
-                <div class="panel-body">
-                    <div class="row">
-                        <div class="col-md-6">
-                            {{$invoices->nameCustomer}}
-                            <br><br>
-                            {{$invoices->street}}
-                            <br>
-                            {{$invoices->city}}, {{$invoices->zip}}
-                            <br>
-                            {{$invoices->state}}
-                        </div>
-                        <div class="col-md-6">
-                            <br>
-                            <strong>ICO: </strong>{{$invoices->ico}}<br>
-                            <strong>DIČ: </strong>{{$invoices->dic}}<br>
-                            <strong>DIČ DPH: </strong>{{$invoices->dic_dph}}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Parameters</h3>
-                </div>
-                <div class="panel-body">
-                    <strong>Code: </strong>{{$invoices->code}}<br>
-                    <strong>Symbol: </strong>{{$invoices->symbol}}<br>
-                    <strong>Date of invoicing:</strong><br>
-                    {{$invoices->date_of_invoicing}}<br>
-                    <strong>Due date:</strong><br>
-                    {{$invoices->due_date}}
-                </div>
-            </div>
+    <h1>Faktúra č. {{$invoices->code}}</h1>
+    <table class="mainTable">
+        <tr>
+            <td class="main">
+                <h2>Dodávateľ:</h2>
+                    Roman Balogh<br>
+                Vlastenecké námestie 10<br>
+                85101 Bratislava<br><br>
+                IČO: 47099054<br>
+                DIČ: 1083548202
+                <br><br>
+                <table >
+                    <tr>
+                        <td>
+                            Peňažný ústav:
+                        </td>
+                        <td>
+                            mBank
+                        </td>
+                    </tr>
+                </table>
+                <table>
+                    <tr>
+                        <td>
+                            IBAN:
+                        </td>
+                        <td>
+                            SK28 8360 5207 0042 0551 0424
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td class="main">
+                <h2>Odberateľ</h2>
+                {{$invoices->nameCustomer}}<br>
+                {{$invoices->street}}<br>
+                {{$invoices->city}}, {{$invoices->zip}}<br>
+                {{$invoices->state}}<br>
+                <br><br>
+                <table>
+                    <tr>
+                        <td>Variabilný symbol: </td>
+                        <td>{{$invoices->code}}</td>
+                    </tr>
+                    <tr>
+                        <td>Konštatný symbol: </td>
+                        <td>{{$invoices->symbol}}</td>
+                    </tr>
+                    <tr>
+                        <td>Dátum vystavenia: </td>
+                        <td>{{$invoices->date_of_invoicing}}</td>
+                    </tr>
+                    <tr>
+                        <td>Dátum splatnosti: </td>
+                        <td>{{$invoices->due_date}}</td>
+                    </tr>
+                    <tr>
+                        <td>Spôsob úhrady: </td>
+                        <td>prevodným príkazom</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <table class="itemsTable">
+        <thead>
+        <tr>
+            <td class="name">Názov služby</td>
+            <td  class="tight">Cena/jedn.</td>
+            <td  class="tight">Počet</td>
+            <td>Cena</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td class="name">{{$invoices->items}}</td>
+            <td class="tight"></td>
+            <td class="tight"> </td>
+            <td>{{$invoices->price}} &euro;</td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td class="name">K úhrade celkom</td>
+            <td class="tight" > </td>
+            <td class="tight"></td>
+            <td>{{$invoices->price}} &euro;</td>
+        </tr>
+        </tfoot>
+    </table>
+    Nie som platca DPH.
+    <table class="mainTable last">
+        <tr>
+            <td class="main">
+                Faktúru vystavil: Roman Balogh
+            </td>
+            <td class="main">
+                Podpis
+            </td>
+        </tr>
+    </table>
 
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Items</h3>
-                </div>
-                <div class="panel-body">
-                    Item: {{$invoices->items}}<br>
-                    Price: {{$invoices->price}}
-                </div>
-            </div>
 
-        </div>
 
-    </div>
-</div>
 
-    <a href="/sk/invoice/{{$invoices->id}}/export" class="btn btn-succes">Export</a>
 
 
 

@@ -24,6 +24,36 @@
         <div class="col-md-6">
             <div class="panel panel-primary">
                 <div class="panel-heading">
+                    <h3 class="panel-title">Parameters</h3>
+                </div>
+                <div class="panel-body">
+                    <strong>Code: </strong>{{$invoices->code}}<br>
+                    <strong>Symbol: </strong>{{$invoices->symbol}}<br>
+                    <strong>Date of invoicing:</strong><br>
+                    {{$invoices->date_of_invoicing}}<br>
+                    <strong>Due date:</strong><br>
+                    {{$invoices->due_date}}
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Items</h3>
+                </div>
+                <div class="panel-body">
+                    Item: {{$invoices->items}}<br>
+                    Price: {{$invoices->price}}
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
                     <h3 class="panel-title">Customer detail</h3>
                 </div>
                 <div class="panel-body">
@@ -48,42 +78,17 @@
             </div>
         </div>
 
-        <div class="col-md-6">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Parameters</h3>
-                </div>
-                <div class="panel-body">
-                    <strong>Code: </strong>{{$invoices->code}}<br>
-                    <strong>Symbol: </strong>{{$invoices->symbol}}<br>
-                    <strong>Date of invoicing:</strong><br>
-                    {{$invoices->date_of_invoicing}}<br>
-                    <strong>Due date:</strong><br>
-                    {{$invoices->due_date}}
-                </div>
-            </div>
-
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Items</h3>
-                </div>
-                <div class="panel-body">
-                    Item: {{$invoices->items}}<br>
-                    Price: {{$invoices->price}}
-                </div>
-            </div>
-
-        </div>
 
     </div>
+        <a href="/sk/invoice/{{$invoices->id}}/download" target="_blank" class="btn btn-primary">Download</a>
+        <a href="/sk/invoice/{{$invoices->id}}/preview" class="btn btn-primary">Preview</a>
+        <a href="/sk/invoice/{{$invoices->id}}/export" target="_blank" class="btn btn-primary">Export new</a>
+
+
 </div>
 
-    <a href="/sk/invoice/{{$invoices->id}}/download" target="_blank" class="btn btn-succes">Download</a>
 
 
 
-    @endsection
+
+@endsection

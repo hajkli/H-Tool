@@ -61,14 +61,18 @@ class InvoiceController extends Controller
      */
     public function create()
     {
-        $currentYear =  date("y");
-        $count = \App\Invoice::where('isActive', 1)->count();
+        $currentYear = date("Y");
+        $currentYearForCode =  date("y");
+
+        $count = \App\Invoice::where('year', $currentYear)->count();
             if($count <= 9){
-                $count = '0'.$count;
+                $count = '0'.($count+1);
+            } else{
+                $count = $count+1;
             }
 
-        $newCode = $currentYear.''.$count ;
-        return view('create_invoice',['data' => $newCode]);
+        $newCode = $currentYearForCode.''.$count ;
+        return view('create_invoice',['data' => $newCode,'curYear'=>$currentYear]);
     }
 
     /**
@@ -125,13 +129,36 @@ class InvoiceController extends Controller
     {
 
 
-//        $invoices = \App\Invoice::where('id' , $id)->first();
             if(isset($invoiceId)){
                 return view('invoice_detail',['invoices' => $invoiceId]);
             } else {
                 return redirect('/sk/');
             }
     }
+
+    public function preview(\App\Invoice $invoiceId)
+    {
+
+
+//        $invoices = \App\Invoice::where('id' , $id)->first();
+        if(isset($invoiceId)){
+            return view('invoice_pdf',['invoices' => $invoiceId]);
+        } else {
+            return redirect('/sk/');
+        }
+    }
+
+    public function export(\App\Invoice $invoiceId)
+    {
+        $invoices = \App\Invoice::find($invoiceId)->first();
+
+
+            PDF::loadView('invoice_pdf', compact('invoices'))->save("../storage/invoices/test.pdf");
+        return view('invoice_detail',['invoices' => $invoiceId]);
+
+    }
+
+
 
     /**
      * Update the specified resource in storage.
@@ -151,7 +178,7 @@ class InvoiceController extends Controller
             return redirect('/sk/listall')->with('status', 'success');
         }else{
             return view('edit-task',['model' => $invoices]);
-            
+
             // return redirect("/sk/task/edit/$id")->with('status', 'error');
         }
     }

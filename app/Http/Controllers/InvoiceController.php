@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 //use App\Task;
 use Illuminate\Http\Request;
-
-
+use PDF;
 class InvoiceController extends Controller
 {
 
@@ -94,11 +93,30 @@ class InvoiceController extends Controller
 
 
 
-        if($invoices->save()){
-            return redirect('/sk/invoice/listall')->with('status', 'created');
-        }else{
-            return redirect("/sk/invoice/create")->with('status', 'not_created');
-        }   
+//        if($invoices->save()){
+//            return redirect('/sk/invoice/listall')->with('status', 'created');
+//        }else{
+//            return redirect("/sk/invoice/create")->with('status', 'not_created');
+//        }
+    }
+
+    public function export($id)
+    {
+        $model = \App\Invoice::find($id);
+
+
+        $pdf = PDF::loadView('invoice_pdf', compact('model'));
+        return $pdf->download('invoice.pdf');
+        return PDF::loadFile(public_path().'/myfile.html')->save('/path-to/my_stored_file.pdf')->stream('download.pdf');
+
+
+
+
+//        if($invoices->save()){
+//            return redirect('/sk/invoice/listall')->with('status', 'created');
+//        }else{
+//            return redirect("/sk/invoice/create")->with('status', 'not_created');
+//        }
     }
 
     public function detail(\App\Invoice $invoiceId)

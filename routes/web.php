@@ -109,7 +109,12 @@ Route::get('{locale}/invoice/create',   function ($locale) {
 });
 
 
-Route::get('/sk/invoice/{invoiceId}', 'InvoiceController@detail');
+
+Route::get('/sk/invoice/{invoiceId}', 'InvoiceController@detail'); //invoice detail
+
+Route::get('/sk/invoice/{invoiceId}/export', 'InvoiceController@export'); //invoice detail
+
+
 
 
 Route::post('/{locale}/invoice/store',   function ($locale, Request  $request) {

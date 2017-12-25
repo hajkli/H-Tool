@@ -1,33 +1,80 @@
 @extends('layouts.app')
 
-@section('title', 'Zoznam uloh')
+@section('title', 'Invoice detail')
 
 @section('content')
 
 
 
-<div class="crudCont crudForm form-group">
 
 
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <h1>Invoice detail: {{$model->code}}</h1>
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Customer detail</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            {{$model->nameCustomer}}
+                            <br><br>
+                            {{$model->street}}
+                            <br>
+                            {{$model->city}}, {{$model->zip}}
+                            <br>
+                            {{$model->state}}
+                        </div>
+                        <div class="col-md-6">
+                            <br>
+                            <strong>ICO: </strong>{{$model->ico}}<br>
+                            <strong>DIČ: </strong>{{$model->dic}}<br>
+                            <strong>DIČ DPH: </strong>{{$model->dic_dph}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Parameters</h3>
+                </div>
+                <div class="panel-body">
+                    <strong>Code: </strong>{{$model->code}}<br>
+                    <strong>Symbol: </strong>{{$model->symbol}}<br>
+                    <strong>Date of invoicing:</strong><br>
+                    {{$model->date_of_invoicing}}<br>
+                    <strong>Due date:</strong><br>
+                    {{$model->due_date}}
+                </div>
+            </div>
 
-@if (session('status') == 'error')      
-     <div class='alert alert-danger'>
-        @lang('task.task_update_error')
+        </div>
     </div>
-@endif
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Items</h3>
+                </div>
+                <div class="panel-body">
+                    Item: {{$model->items}}<br>
+                    Price: {{$model->price}}
+                </div>
+            </div>
 
-    <form id="add-form" action="/sk/task/update" method="post">
-        {{ csrf_field() }}
-        <input type="hidden" name="id" value="{{$model->id}}">
-        <label for="name">Task name</label>
-        <input type="text" name="name" value="{{$model->name}}"
-               class="form-control">
-                    {{$model->valMsg['name']}}
-        <br>
-        <label for="desc">Task description</label>
-        <button type="submit" value="Update" name="send"
-                id="send" class="btn btn-primary">send</button>
-    </form>
+        </div>
+
+    </div>
 </div>
+
+    <a href="/sk/invoice/{{$model->id}}/export" class="btn btn-succes">Export</a>
+
+
 
     @endsection

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 //use App\Task;
 use Illuminate\Http\Request;
 use PDF;
+use Illuminate\Support\Facades\Storage;
 class InvoiceController extends Controller
 {
 
@@ -60,8 +61,14 @@ class InvoiceController extends Controller
      */
     public function create()
     {
+        $currentYear =  date("y");
+        $count = \App\Invoice::where('isActive', 1)->count();
+            if($count <= 9){
+                $count = '0'.$count;
+            }
 
-        return view('create_invoice');
+        $newCode = $currentYear.''.$count ;
+        return view('create_invoice',['data' => $newCode]);
     }
 
     /**
@@ -93,30 +100,25 @@ class InvoiceController extends Controller
 
 
 
-//        if($invoices->save()){
-//            return redirect('/sk/invoice/listall')->with('status', 'created');
-//        }else{
-//            return redirect("/sk/invoice/create")->with('status', 'not_created');
-//        }
+        if($invoices->save()){
+            PDF::loadView('invoice_pdf', compact('invoices'))->save("../storage/invoices/$invoices->code.pdf")->stream("$invoices->code.pdf");
+            return redirect("/sk/invoice/$invoices->id ")->with('status', 'succes');
+        }else{
+            return redirect("/sk/invoice/create")->with('status', 'not_created');
+        }
     }
 
-    public function export($id)
+    public function download($id)
     {
-        $model = \App\Invoice::find($id);
+        $invoices = \App\Invoice::find($id);
 
 
-        $pdf = PDF::loadView('invoice_pdf', compact('model'));
-        return $pdf->download('invoice.pdf');
-        return PDF::loadFile(public_path().'/myfile.html')->save('/path-to/my_stored_file.pdf')->stream('download.pdf');
+//        $url = Storage::url("$invoices->code.pdf")->download();
+//        return $url;
 
+        $path = storage_path("invoices/$invoices->code.pdf");
+        return response()->download($path);
 
-
-
-//        if($invoices->save()){
-//            return redirect('/sk/invoice/listall')->with('status', 'created');
-//        }else{
-//            return redirect("/sk/invoice/create")->with('status', 'not_created');
-//        }
     }
 
     public function detail(\App\Invoice $invoiceId)
@@ -125,7 +127,7 @@ class InvoiceController extends Controller
 
 //        $invoices = \App\Invoice::where('id' , $id)->first();
             if(isset($invoiceId)){
-                return view('invoice_detail',['model' => $invoiceId]);
+                return view('invoice_detail',['invoices' => $invoiceId]);
             } else {
                 return redirect('/sk/');
             }

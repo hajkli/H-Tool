@@ -54,10 +54,9 @@
             <div class="form-group">
                 <label for="code" class="col-lg-2 control-label">Code</label>
                 <div class="col-sm-6">
-                    <input class="form-control" id="code" name="code" placeholder="Code" type="text">
+                    <input class="form-control" id="code" name="code" value="{{$data}}" placeholder="Code" type="text">
                 </div>
             </div>
-
             <div class="form-group">
                 <label for="symbol" class="col-lg-2 control-label">Symbol</label>
                 <div class="col-sm-6">

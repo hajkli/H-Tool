@@ -19,7 +19,7 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-12">
-            <h1>Invoice detail: {{$model->code}}</h1>
+            <h1>Invoice detail: {{$invoices->code}}</h1>
         </div>
         <div class="col-md-6">
             <div class="panel panel-primary">
@@ -29,19 +29,19 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-md-6">
-                            {{$model->nameCustomer}}
+                            {{$invoices->nameCustomer}}
                             <br><br>
-                            {{$model->street}}
+                            {{$invoices->street}}
                             <br>
-                            {{$model->city}}, {{$model->zip}}
+                            {{$invoices->city}}, {{$invoices->zip}}
                             <br>
-                            {{$model->state}}
+                            {{$invoices->state}}
                         </div>
                         <div class="col-md-6">
                             <br>
-                            <strong>ICO: </strong>{{$model->ico}}<br>
-                            <strong>DIČ: </strong>{{$model->dic}}<br>
-                            <strong>DIČ DPH: </strong>{{$model->dic_dph}}
+                            <strong>ICO: </strong>{{$invoices->ico}}<br>
+                            <strong>DIČ: </strong>{{$invoices->dic}}<br>
+                            <strong>DIČ DPH: </strong>{{$invoices->dic_dph}}
                         </div>
                     </div>
                 </div>
@@ -53,12 +53,12 @@
                     <h3 class="panel-title">Parameters</h3>
                 </div>
                 <div class="panel-body">
-                    <strong>Code: </strong>{{$model->code}}<br>
-                    <strong>Symbol: </strong>{{$model->symbol}}<br>
+                    <strong>Code: </strong>{{$invoices->code}}<br>
+                    <strong>Symbol: </strong>{{$invoices->symbol}}<br>
                     <strong>Date of invoicing:</strong><br>
-                    {{$model->date_of_invoicing}}<br>
+                    {{$invoices->date_of_invoicing}}<br>
                     <strong>Due date:</strong><br>
-                    {{$model->due_date}}
+                    {{$invoices->due_date}}
                 </div>
             </div>
 
@@ -71,8 +71,8 @@
                     <h3 class="panel-title">Items</h3>
                 </div>
                 <div class="panel-body">
-                    Item: {{$model->items}}<br>
-                    Price: {{$model->price}}
+                    Item: {{$invoices->items}}<br>
+                    Price: {{$invoices->price}}
                 </div>
             </div>
 
@@ -81,7 +81,7 @@
     </div>
 </div>
 
-    <a href="/sk/invoice/{{$model->id}}/export" class="btn btn-succes">Export</a>
+    <a href="/sk/invoice/{{$invoices->id}}/export" class="btn btn-succes">Export</a>
 
 
 

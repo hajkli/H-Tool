@@ -112,7 +112,7 @@ Route::get('{locale}/invoice/create',   function ($locale) {
 
 Route::get('/sk/invoice/{invoiceId}', 'InvoiceController@detail'); //invoice detail
 
-Route::get('/sk/invoice/{invoiceId}/export', 'InvoiceController@export'); //invoice detail
+Route::get('/sk/invoice/{invoiceId}/download', 'InvoiceController@download'); //invoice pdf downloader
 
 
 

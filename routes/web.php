@@ -108,6 +108,10 @@ Route::get('{locale}/invoice/create',   function ($locale) {
   return app()->make('\App\Http\Controllers\InvoiceController')->callAction('create', $parameters = []);
 });
 
+
+Route::get('/sk/invoice/{invoiceId}', 'InvoiceController@detail');
+
+
 Route::post('/{locale}/invoice/store',   function ($locale, Request  $request) {
   App::setLocale($locale);
   return app()->make('\App\Http\Controllers\InvoiceController')->callAction('store', $parameters = ['request' => $request]);

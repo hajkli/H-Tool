@@ -101,13 +101,13 @@ class InvoiceController extends Controller
         }   
     }
 
-    public function edit(\App\Invoice $task)
+    public function detail(\App\Invoice $invoiceId)
     {
 
 
 //        $invoices = \App\Invoice::where('id' , $id)->first();
-            if(isset($task)){
-                return view('edit-task',['model' => $task]);
+            if(isset($invoiceId)){
+                return view('invoice_detail',['model' => $invoiceId]);
             } else {
                 return redirect('/sk/');
             }

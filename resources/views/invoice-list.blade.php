@@ -26,7 +26,7 @@
 
             @foreach($data as $task => $value)
                 <div id="item{{$value->id}}" class="list-group">
-                    <a href="{{ URL::to('/sk/task/edit/' . $value->id) }}" class="list-group-item">
+                    <a href="{{ URL::to('/sk/invoice/' . $value->id) }}" class="list-group-item">
                         <h4 class="list-group-item-heading">{{ $value->name }}</h4>
                     </a>
                 </div>

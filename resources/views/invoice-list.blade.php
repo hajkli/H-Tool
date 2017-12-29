@@ -5,7 +5,7 @@
 @section('content')
 
 <div class="container ">
-    <h1>@lang('task.listheadline')</h1>
+    <h1>Zoznam faktur</h1>
 
     <div class="row">
         <div class="col-sm-12">
@@ -27,7 +27,7 @@
             @foreach($data as $task => $value)
                 <div id="item{{$value->id}}" class="list-group">
                     <a href="{{ URL::to('/sk/invoice/' . $value->id) }}" class="list-group-item">
-                        <h4 class="list-group-item-heading">{{ $value->name }}</h4>
+                        <h4 class="list-group-item-heading">{{$value->code}} <span class="smaller">{{ $value->name }}</span> <span class="smaller state">Stav</span></h4>
                     </a>
                 </div>
             @endforeach

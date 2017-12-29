@@ -42,6 +42,8 @@
                         </div>
                     </div>
 
+                    <button type="button" class="btn btn-success addnew">Pridať ďalší predmet</button>
+
                     <div class="form-group">
                         <label for="date_of_invoicing" class=" control-label">Date of invoicing</label>
                         <div class="n">

@@ -106,6 +106,9 @@ h1 {
 .form-center button{
     margin-top: 25px;
 }
-.addnew{
+#addnew{
     margin-bottom: 25px;
+}
+.thin-border-bottom{
+
 }

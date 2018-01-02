@@ -108,6 +108,7 @@ class InvoiceController extends Controller
         $invoices->dic = $request->input('dic');
         $invoices->dic_dph = $request->input('dic-dph');
 
+        $invoices->year = $request->input('year');
 
 
         if($invoices->save()){
@@ -138,10 +139,11 @@ class InvoiceController extends Controller
 
         $items = explode(", ", $invoices->items);
         $price = explode(", ", $invoices->price);
+        $priceSum =  array_sum ($price );
 
             if(isset($invoiceId)){
 
-                return view('invoice_detail',['invoices' => $invoices, 'price' => $price, 'items' => $items]);
+                return view('invoice_detail',['invoices' => $invoices, 'price' => $price, 'items' => $items, 'priceSum' => $priceSum]);
             } else {
                 return redirect('/sk/');
             }

@@ -1,7 +1,15 @@
-/**
- * Created by Visibility on 27.12.2017.
- */
 $(function(){
-    $( ".hello" ).clone().appendTo( ".goodbye" );
+
+
+
+
+
+    $('#addnew').click(function(){
+        console.log('a');
+        $('#forduplicate').clone().insertAfter("#forduplicate");
+    });
+
+
+
 
 });

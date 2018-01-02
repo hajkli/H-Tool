@@ -43,7 +43,12 @@
                     <h3 class="panel-title">Items</h3>
                 </div>
                 <div class="panel-body">
-                    Item: {{$invoices->items}}<br>
+
+                    @foreach ($items as $value)
+                        <p>{{$value}}</p>,
+                    @endforeach
+                    <?php var_dump($items); ?>
+                    {{--Item: {{$irems}}<br>--}}
                     Price: {{$invoices->price}}
                 </div>
             </div>

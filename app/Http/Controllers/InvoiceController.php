@@ -85,9 +85,15 @@ class InvoiceController extends Controller
     {
         $invoices = new \App\Invoice();
 
+        $items = $request->input('items');
+        $implodetItems = implode(", ", $items);
+
+        $price = $request->input('price');;
+        $implodetPrice = implode(", ",$price);
+
         $invoices->name = $request->input('name');
-        $invoices->items = $request->input('items');
-        $invoices->price = $request->input('price');
+        $invoices->items = $implodetItems;
+        $invoices->price = $implodetPrice;
         $invoices->date_of_invoicing = $request->input('date_of_invoicing');
         $invoices->due_date = $request->input('due_date');
         $invoices->code = $request->input('code');
@@ -125,12 +131,17 @@ class InvoiceController extends Controller
 
     }
 
-    public function detail(\App\Invoice $invoiceId)
+    public function detail($invoiceId)
     {
 
+        $invoices = \App\Invoice::find($invoiceId);
+
+        $items = explode(", ", $invoices->items);
+        $price = explode(", ", $invoices->price);
 
             if(isset($invoiceId)){
-                return view('invoice_detail',['invoices' => $invoiceId]);
+
+                return view('invoice_detail',['invoices' => $invoices, 'price' => $price, 'items' => $items]);
             } else {
                 return redirect('/sk/');
             }

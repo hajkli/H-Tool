@@ -20,7 +20,7 @@
         <form id="add-form" class=" form-center" action="/sk/invoice/store" method="post">
             <fieldset>
                 {{ csrf_field() }}
-                <input name="year" id="year" type="hidden" value="{{$curYear}}">
+                <input name="year" id="year" type="text" value="{{$curYear}}">
                 <div class="col-sm-6">
                     <h2>Invoice parameters</h2>
                     <div class="form-group">
@@ -29,20 +29,7 @@
                             <input class="form-control" id="name" name="name" placeholder="Name" type="text">
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="items" class=" control-label">Items</label>
-                        <div class="n">
-                            <input class="form-control" id="items" name="items" placeholder="Items" type="text">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="price" class=" control-label">Price</label>
-                        <div class="n">
-                            <input class="form-control" id="price" name="price" placeholder="Price" type="text">
-                        </div>
-                    </div>
 
-                    <button type="button" class="btn btn-success addnew">Pridať ďalší predmet</button>
 
                     <div class="form-group">
                         <label for="date_of_invoicing" class=" control-label">Date of invoicing</label>
@@ -131,6 +118,43 @@
                       </div>
                   </div>
               </div>
+                <div class="col-sm-12">
+
+                    <h3 class="text-center"> Invoice items</h3>
+                    <div id="forduplicate">
+                        <div class="row">
+                            <div class="col-sm-8">
+
+                                <div class="form-group">
+                                    <label for="items" class=" control-label">Item</label>
+                                    <div class="n">
+                                        <input class="form-control" id="items" name="items[]" placeholder="Items" type="text">
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label for="price" class=" control-label">Price</label>
+                                    <div class="n">
+                                        <input class="form-control" id="price" name="price[]" placeholder="Price" type="text">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+
+                    </div>
+
+                    <button type="button" id="addnew" class="btn btn-success ">Pridať ďalší predmet</button>
+
+                </div>
 
 
 
@@ -146,5 +170,6 @@
 </div>
 </div>
 
+<script></script>
 
     @endsection

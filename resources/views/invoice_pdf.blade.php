@@ -41,11 +41,13 @@
         .itemsTable tfoot, .itemsTable thead{
             font-weight: 700;
         }
-        .tight{
-            width: 10%;
+        td.price{
+            width: 20%;
+            text-align: right;
         }
         td.name{
-            width: 65%;
+            text-align: left;
+            width: 80%;
         }
     </style>
 
@@ -113,33 +115,44 @@
             </td>
         </tr>
     </table>
+
+
     <table class="itemsTable">
         <thead>
         <tr>
             <td class="name">Názov služby</td>
-            <td  class="tight">Cena/jedn.</td>
-            <td  class="tight">Počet</td>
+
             <td>Cena</td>
         </tr>
         </thead>
         <tbody>
         <tr>
-            <td class="name">{{$invoices->items}}</td>
-            <td class="tight"></td>
-            <td class="tight"> </td>
-            <td>{{$invoices->price}} &euro;</td>
+            <td class="name">
+
+                @foreach ($items as $value)
+                    {{$value}} <br>
+                @endforeach
+
+            </td>
+
+            <td class="price">
+                @foreach ($price as $value)
+                {{$value}} &euro; <br>
+                @endforeach
+                </td>
         </tr>
         </tbody>
         <tfoot>
         <tr>
             <td class="name">K úhrade celkom</td>
-            <td class="tight" > </td>
-            <td class="tight"></td>
-            <td>{{$invoices->price}} &euro;</td>
+
+            <td class="price">{{$priceSum}} &euro;</td>
         </tr>
         </tfoot>
     </table>
+    <p>
     Nie som platca DPH.
+    </p>
     <table class="mainTable last">
         <tr>
             <td class="main">

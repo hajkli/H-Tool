@@ -43,8 +43,28 @@
                     <h3 class="panel-title">Items</h3>
                 </div>
                 <div class="panel-body">
-                    Item: {{$invoices->items}}<br>
-                    Price: {{$invoices->price}}
+                    <div class="row">
+                        <div class="col-sm-8 thin-border-bottom">
+                            @foreach ($items as $value)
+                                {{$value}} <br>
+                            @endforeach
+                        </div>
+                        <div class="col-sm-4">
+                            @foreach ($price as $value)
+                                {{$value}} &euro; <br>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                   <div class="row">
+                       <div class="col-sm-8">
+                           Spolu:
+                       </div>
+                       <div class="col-sm-4">
+                           {{$priceSum}} &euro;
+                       </div>
+                   </div>
                 </div>
             </div>
 
@@ -82,7 +102,7 @@
     </div>
         <a href="/sk/invoice/{{$invoices->id}}/download" target="_blank" class="btn btn-primary">Download</a>
         <a href="/sk/invoice/{{$invoices->id}}/preview" class="btn btn-primary">Preview</a>
-        <a href="/sk/invoice/{{$invoices->id}}/export" target="_blank" class="btn btn-primary">Export new</a>
+        <a href="/sk/invoice/{{$invoices->id}}/export"  class="btn btn-primary">Export new</a>
 
 
 </div>

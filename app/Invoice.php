@@ -13,7 +13,7 @@ class Invoice extends Model
 
   protected $table = 'crud_invoice';
 
-  public $valMsg = array('name'=>'','items'=>'','price'=>'','customer'=>'','date_of_invoicing'=>'','due_date'=>'','status'=>'','code'=>'','symbol'=>'','nameCustomer'=>'','street'=>'','city'=>'','zip'=>'','ico'=>'','dic'=>'','dic_dph'=>'','iban'=>'');
+  public $valMsg = array('name'=>'','items'=>'','price'=>'','customer'=>'','date_of_invoicing'=>'','due_date'=>'','status'=>'','code'=>'','symbol'=>'','nameCustomer'=>'','street'=>'','city'=>'','zip'=>'','ico'=>'','dic'=>'','dicdph'=>'','iban'=>'');
 
   function validate(){
   		if(strlen($this->name) < 1){

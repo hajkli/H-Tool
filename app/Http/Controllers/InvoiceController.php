@@ -85,9 +85,15 @@ class InvoiceController extends Controller
     {
         $invoices = new \App\Invoice();
 
+        $items = $request->input('items');
+        $implodetItems = implode(", ", $items);
+
+        $price = $request->input('price');;
+        $implodetPrice = implode(", ",$price);
+
         $invoices->name = $request->input('name');
-        $invoices->items = $request->input('items');
-        $invoices->price = $request->input('price');
+        $invoices->items = $implodetItems;
+        $invoices->price = $implodetPrice;
         $invoices->date_of_invoicing = $request->input('date_of_invoicing');
         $invoices->due_date = $request->input('due_date');
         $invoices->code = $request->input('code');
@@ -102,6 +108,7 @@ class InvoiceController extends Controller
         $invoices->dic = $request->input('dic');
         $invoices->dic_dph = $request->input('dic-dph');
 
+        $invoices->year = $request->input('year');
 
 
         if($invoices->save()){
@@ -125,36 +132,55 @@ class InvoiceController extends Controller
 
     }
 
-    public function detail(\App\Invoice $invoiceId)
+    public function detail($invoiceId)
     {
 
+        $invoices = \App\Invoice::find($invoiceId);
+
+        $items = explode(", ", $invoices->items);
+        $price = explode(", ", $invoices->price);
+        $priceSum =  array_sum ($price );
 
             if(isset($invoiceId)){
-                return view('invoice_detail',['invoices' => $invoiceId]);
+
+                return view('invoice_detail',['invoices' => $invoices, 'price' => $price, 'items' => $items, 'priceSum' => $priceSum]);
             } else {
                 return redirect('/sk/');
             }
     }
 
-    public function preview(\App\Invoice $invoiceId)
+    public function preview($invoiceId)
     {
+
+        $invoices = \App\Invoice::find($invoiceId);
+
+        $items = explode(", ", $invoices->items);
+        $price = explode(", ", $invoices->price);
+        $priceSum =  array_sum ($price );
 
 
 //        $invoices = \App\Invoice::where('id' , $id)->first();
         if(isset($invoiceId)){
-            return view('invoice_pdf',['invoices' => $invoiceId]);
+            return view('invoice_pdf',['invoices' => $invoices, 'price' => $price, 'items' => $items, 'priceSum' => $priceSum]);
         } else {
             return redirect('/sk/');
         }
     }
 
-    public function export(\App\Invoice $invoiceId)
+    public function export($invoiceId)
     {
-        $invoices = \App\Invoice::find($invoiceId)->first();
+
+        $invoices = \App\Invoice::find($invoiceId);
+//        $invoices = \App\Invoice::find($invoiceId)->first();
+
+        $items = explode(", ", $invoices->items);
+        $price = explode(", ", $invoices->price);
+        $priceSum =  array_sum ($price );
 
 
-            PDF::loadView('invoice_pdf', compact('invoices'))->save("../storage/invoices/test.pdf");
-        return view('invoice_detail',['invoices' => $invoiceId]);
+
+            PDF::loadView('invoice_pdf', compact('invoices', 'items', 'price', 'priceSum'))->save("../storage/invoices/$invoices->code.pdf");
+        return view('invoice_detail',['invoices' => $invoices, 'price' => $price, 'items' => $items, 'priceSum' => $priceSum]);
 
     }
 

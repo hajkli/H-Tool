@@ -102,7 +102,7 @@
     </div>
         <a href="/sk/invoice/{{$invoices->id}}/download" target="_blank" class="btn btn-primary">Download</a>
         <a href="/sk/invoice/{{$invoices->id}}/preview" class="btn btn-primary">Preview</a>
-        <a href="/sk/invoice/{{$invoices->id}}/export" target="_blank" class="btn btn-primary">Export new</a>
+        <a href="/sk/invoice/{{$invoices->id}}/export"  class="btn btn-primary">Export new</a>
 
 
 </div>

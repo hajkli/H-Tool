@@ -149,25 +149,38 @@ class InvoiceController extends Controller
             }
     }
 
-    public function preview(\App\Invoice $invoiceId)
+    public function preview($invoiceId)
     {
+
+        $invoices = \App\Invoice::find($invoiceId);
+
+        $items = explode(", ", $invoices->items);
+        $price = explode(", ", $invoices->price);
+        $priceSum =  array_sum ($price );
 
 
 //        $invoices = \App\Invoice::where('id' , $id)->first();
         if(isset($invoiceId)){
-            return view('invoice_pdf',['invoices' => $invoiceId]);
+            return view('invoice_pdf',['invoices' => $invoices, 'price' => $price, 'items' => $items, 'priceSum' => $priceSum]);
         } else {
             return redirect('/sk/');
         }
     }
 
-    public function export(\App\Invoice $invoiceId)
+    public function export($invoiceId)
     {
-        $invoices = \App\Invoice::find($invoiceId)->first();
+
+        $invoices = \App\Invoice::find($invoiceId);
+//        $invoices = \App\Invoice::find($invoiceId)->first();
+
+        $items = explode(", ", $invoices->items);
+        $price = explode(", ", $invoices->price);
+        $priceSum =  array_sum ($price );
 
 
-            PDF::loadView('invoice_pdf', compact('invoices'))->save("../storage/invoices/test.pdf");
-        return view('invoice_detail',['invoices' => $invoiceId]);
+
+            PDF::loadView('invoice_pdf', compact('invoices', 'items', 'price', 'priceSum'))->save("../storage/invoices/$invoices->code.pdf");
+        return view('invoice_detail',['invoices' => $invoices, 'price' => $price, 'items' => $items, 'priceSum' => $priceSum]);
 
     }
 

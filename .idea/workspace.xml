@@ -39,7 +39,7 @@
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/InvoiceController.php">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="-5.3733335">
-              <caret line="145" column="124" selection-start-line="145" selection-start-column="124" selection-end-line="145" selection-end-column="124" />
+              <caret line="181" column="134" selection-start-line="181" selection-start-column="134" selection-end-line="181" selection-end-column="134" />
               <folding>
                 <element signature="e#56#84#0#PHP" expanded="true" />
               </folding>
@@ -50,8 +50,8 @@
       <file leaf-file-name="invoice_detail.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/invoice_detail.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.86897004">
-              <caret line="64" column="47" selection-start-line="64" selection-start-column="47" selection-end-line="64" selection-end-column="47" />
+            <state vertical-scroll-proportion="0.767927">
+              <caret line="38" column="14" selection-start-line="38" selection-start-column="14" selection-end-line="38" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -60,8 +60,8 @@
       <file leaf-file-name="invoice_pdf.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/invoice_pdf.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-19.588236">
-              <caret line="108" column="48" selection-start-line="108" selection-start-column="48" selection-end-line="108" selection-end-column="48" />
+            <state vertical-scroll-proportion="-8.515464">
+              <caret line="141" column="16" selection-start-line="141" selection-start-column="16" selection-end-line="141" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -157,18 +157,18 @@
         <option value="$PROJECT_DIR$/resources/views/task-list.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/archive.blade.php" />
         <option value="$PROJECT_DIR$/app/Customer.php" />
-        <option value="$PROJECT_DIR$/app/Invoice.php" />
         <option value="$PROJECT_DIR$/config/app.php" />
         <option value="$PROJECT_DIR$/storage/fonts/dompdf_font_family_cache.php" />
         <option value="$PROJECT_DIR$/config/dompdf.php" />
         <option value="$PROJECT_DIR$/resources/views/invoice-list.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/layouts/print.blade.php" />
         <option value="$PROJECT_DIR$/routes/web.php" />
-        <option value="$PROJECT_DIR$/resources/views/invoice_pdf.blade.php" />
         <option value="$PROJECT_DIR$/public/js/main.js" />
         <option value="$PROJECT_DIR$/resources/views/layouts/app.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/create_invoice.blade.php" />
         <option value="$PROJECT_DIR$/public/css/style.css" />
+        <option value="$PROJECT_DIR$/app/Invoice.php" />
+        <option value="$PROJECT_DIR$/resources/views/invoice_pdf.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/InvoiceController.php" />
         <option value="$PROJECT_DIR$/resources/views/invoice_detail.blade.php" />
       </list>
@@ -849,14 +849,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Invoice.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.625">
-          <caret line="15" column="229" selection-start-line="15" selection-start-column="229" selection-end-line="15" selection-end-column="229" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/edit-task.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3500847">
@@ -905,14 +897,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/layouts/print.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.39526412">
-          <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/assets/js/app.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -933,14 +917,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/invoice_pdf.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-19.588236">
-          <caret line="108" column="48" selection-start-line="108" selection-start-column="48" selection-end-line="108" selection-end-column="48" />
           <folding />
         </state>
       </provider>
@@ -990,10 +966,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/Invoice.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.11293261">
+          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/layouts/print.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.39526412">
+          <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/invoice_pdf.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.515464">
+          <caret line="141" column="16" selection-start-line="141" selection-start-column="16" selection-end-line="141" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/InvoiceController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-5.3733335">
-          <caret line="145" column="124" selection-start-line="145" selection-start-column="124" selection-end-line="145" selection-end-column="124" />
+          <caret line="181" column="134" selection-start-line="181" selection-start-column="134" selection-end-line="181" selection-end-column="134" />
           <folding>
             <element signature="e#56#84#0#PHP" expanded="true" />
           </folding>
@@ -1002,8 +1002,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/invoice_detail.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.86897004">
-          <caret line="64" column="47" selection-start-line="64" selection-start-column="47" selection-end-line="64" selection-end-column="47" />
+        <state vertical-scroll-proportion="0.767927">
+          <caret line="38" column="14" selection-start-line="38" selection-start-column="14" selection-end-line="38" selection-end-column="14" />
           <folding />
         </state>
       </provider>

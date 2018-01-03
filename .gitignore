@@ -20,3 +20,5 @@ bin-release/
 # information for Eclipse / Flash Builder.
 storage/invoices/1723.pdf
 .idea/workspace.xml
+.idea/workspace.xml
+storage/invoices/ignore

@@ -101,11 +101,11 @@
                     </tr>
                     <tr>
                         <td>Dátum vystavenia: </td>
-                        <td>{{$invoices->date_of_invoicing}}</td>
+                        <td>{{date('j. n. Y', strtotime($invoices->date_of_invoicing))}}</td>
                     </tr>
                     <tr>
                         <td>Dátum splatnosti: </td>
-                        <td>{{$invoices->due_date}}</td>
+                        <td>{{date('j. n. Y', strtotime($invoices->due_date))}}</td>
                     </tr>
                     <tr>
                         <td>Spôsob úhrady: </td>
@@ -129,14 +129,14 @@
         <tr>
             <td class="name">
 
-                @foreach ($items as $value)
+                @foreach ($itemsExplodet as $value)
                     {{$value}} <br>
                 @endforeach
 
             </td>
 
             <td class="price">
-                @foreach ($price as $value)
+                @foreach ($priceExplodet as $value)
                 {{$value}} &euro; <br>
                 @endforeach
                 </td>

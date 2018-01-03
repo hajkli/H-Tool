@@ -44,8 +44,6 @@ class TaskController extends Controller
      */
     public function listAll()
     {
-
-
         $tasks = \App\Task::where('isActive' , 1)->get();
 
         return view('task-list', ['data' => $tasks]);

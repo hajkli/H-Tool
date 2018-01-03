@@ -18,8 +18,15 @@
     @endif
 
     <div class="row">
-        <div class="col-sm-12">
+        <div class="col-sm-8">
             <h1>Invoice detail: {{$invoices->code}}</h1>
+        </div>
+        <div class="col-sm-4 text-right">
+            @if($invoices->status == 1)
+                <a href="/sk/invoice/{{$invoices->id}}/paid" class="btn btn-danger paid">Zaplatena</a>
+            @else
+                <div class="btn btn-disabled paid">Zaplatené</div>
+            @endif
         </div>
         <div class="col-md-6">
             <div class="panel panel-primary">
@@ -103,6 +110,9 @@
         <a href="/sk/invoice/{{$invoices->id}}/download" target="_blank" class="btn btn-primary">Download</a>
         <a href="/sk/invoice/{{$invoices->id}}/preview" class="btn btn-primary">Preview</a>
         <a href="/sk/invoice/{{$invoices->id}}/export"  class="btn btn-primary">Export new</a>
+        @if($invoices->status == 2)
+            <a href="/sk/invoice/{{$invoices->id}}/edit"  class="btn btn-primary">Edit</a>
+        @endif
 
 
 </div>

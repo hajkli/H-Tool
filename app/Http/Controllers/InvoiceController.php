@@ -158,14 +158,15 @@ class InvoiceController extends Controller
 
         $invoices = \App\Invoice::find($invoiceId);
 
-        $items = explode(", ", $invoices->items);
-        $price = explode(", ", $invoices->price);
-        $priceSum =  array_sum ($price );
+        $invoices = \App\Invoice::find($invoiceId);
+        $itemsExplodet = explode(", ", $invoices->items);
+        $priceExplodet = explode(", ", $invoices->price);
+        $priceSum =  array_sum ($priceExplodet );
 
 
 //        $invoices = \App\Invoice::where('id' , $id)->first();
         if(isset($invoiceId)){
-            return view('invoice_pdf',['invoices' => $invoices, 'price' => $price, 'items' => $items, 'priceSum' => $priceSum]);
+            return view('invoice_pdf',['invoices' => $invoices, 'priceExplodet' => $priceExplodet, 'itemsExplodet' => $itemsExplodet, 'priceSum' => $priceSum]);
         } else {
             return redirect('/sk/');
         }
@@ -205,6 +206,30 @@ class InvoiceController extends Controller
      * @param  \App\Photo  $photo
      * @return \Illuminate\Http\Response
      */
+
+    public function edit($invoiceId)
+    {
+
+        $invoice = \App\Invoice::find($invoiceId);
+
+        $currentYear = $invoice->year;
+
+        $newCode = $invoice->code;
+
+        $items = explode(", ", $invoice->items);
+        $price = explode(", ", $invoice->price);
+
+
+        if(isset($invoiceId)){
+            return view('edit_invoice',['invoice' => $invoice, 'data' => $newCode,'curYear'=>$currentYear, 'items' => $items, 'price' => $price ]);
+        } else {
+            return redirect('/sk/');
+        }
+    }
+
+
+
+
     public function update(Request $request)
     {
 

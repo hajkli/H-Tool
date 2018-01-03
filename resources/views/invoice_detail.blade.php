@@ -110,7 +110,7 @@
         <a href="/sk/invoice/{{$invoices->id}}/download" target="_blank" class="btn btn-primary">Download</a>
         <a href="/sk/invoice/{{$invoices->id}}/preview" class="btn btn-primary">Preview</a>
         <a href="/sk/invoice/{{$invoices->id}}/export"  class="btn btn-primary">Export new</a>
-        @if($invoices->status == 2)
+        @if($invoices->status == 1)
             <a href="/sk/invoice/{{$invoices->id}}/edit"  class="btn btn-primary">Edit</a>
         @endif
 

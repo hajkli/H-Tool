@@ -121,3 +121,6 @@ h1 {
 }
 .thin-border-bottom{
 }
+#year{
+    display: none;
+}

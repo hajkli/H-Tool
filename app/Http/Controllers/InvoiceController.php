@@ -110,9 +110,13 @@ class InvoiceController extends Controller
 
         $invoices->year = $request->input('year');
 
+        $itemsExplodet = explode(", ", $invoices->items);
+        $priceExplodet = explode(", ", $invoices->price);
+        $priceSum =  array_sum ($price );
+
 
         if($invoices->save()){
-            PDF::loadView('invoice_pdf', compact('invoices'))->save("../storage/invoices/$invoices->code.pdf")->stream("$invoices->code.pdf");
+            PDF::loadView('invoice_pdf', compact('invoices', 'items', 'price', 'priceSum', 'itemsExplodet', 'priceExplodet'))->save("../storage/invoices/$invoices->code.pdf")->stream("$invoices->code.pdf");
             return redirect("/sk/invoice/$invoices->id ")->with('status', 'succes');
         }else{
             return redirect("/sk/invoice/create")->with('status', 'not_created');
@@ -169,20 +173,28 @@ class InvoiceController extends Controller
 
     public function export($invoiceId)
     {
-
         $invoices = \App\Invoice::find($invoiceId);
-//        $invoices = \App\Invoice::find($invoiceId)->first();
+        $itemsExplodet = explode(", ", $invoices->items);
+        $priceExplodet = explode(", ", $invoices->price);
+        $priceSum =  array_sum ($priceExplodet );
 
-        $items = explode(", ", $invoices->items);
-        $price = explode(", ", $invoices->price);
-        $priceSum =  array_sum ($price );
-
-
-
-            PDF::loadView('invoice_pdf', compact('invoices', 'items', 'price', 'priceSum'))->save("../storage/invoices/$invoices->code.pdf");
-        return view('invoice_detail',['invoices' => $invoices, 'price' => $price, 'items' => $items, 'priceSum' => $priceSum]);
-
+            PDF::loadView('invoice_pdf', compact('invoices', 'itemsExplodet', 'priceExplodet', 'priceSum'))->save("../storage/invoices/$invoices->code.pdf");
+        return view('invoice_detail',['invoices' => $invoices, 'price' => $priceExplodet, 'items' => $itemsExplodet, 'priceSum' => $priceSum]);
     }
+
+    public function paid($invoiceId)
+    {
+        $invoices = \App\Invoice::find($invoiceId);
+
+        $invoices->status = 2;
+
+        if($invoices->save()){
+            return redirect("/sk/invoice/$invoiceId")->with('status', 'success');
+        }else{
+            return redirect("/sk/invoice/$invoiceId")->with('status', 'error');
+        }
+    }
+
 
 
 

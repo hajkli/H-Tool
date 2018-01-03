@@ -66,15 +66,15 @@ Route::post('/{locale}/task/store',   function ($locale, Request  $request) {
 
 
 /* Tasks API */
-Route::get('/api/listall', 'TaskController@ListAllApi');
+Route::get('/api/listall_api', 'TaskController@ListAllApi');
 
-Route::get('/api/archive', 'TaskController@ArchiveApi');
+Route::get('/api/archive_api', 'TaskController@ArchiveApi');
 
-Route::delete('/api/task/delete', 'TaskController@deleteApi');
+Route::delete('/api/task/delete_api', 'TaskController@deleteApi');
 
-Route::put('/api/task/update', 'TaskController@updateApi');
+Route::put('/api/task/update_api', 'TaskController@updateApi');
 
-Route::post('/api/task/store', 'TaskController@storeApi');
+Route::post('/api/task/store_api', 'TaskController@storeApi');
 
 
 
@@ -114,7 +114,10 @@ Route::get('/sk/invoice/{invoiceId}/download', 'InvoiceController@download'); //
 
 Route::get('/sk/invoice/{invoiceId}/preview', 'InvoiceController@preview'); //invoice pdf preview before download
 
-Route::get('/sk/invoice/{invoiceId}/export', 'InvoiceController@export'); //invoice pdf preview before download
+Route::get('/sk/invoice/{invoiceId}/export', 'InvoiceController@export'); //Recreate invoice PDF and rewrite the old one
+
+Route::get('/sk/invoice/{invoiceId}/paid', 'InvoiceController@paid'); //Change invoice status unpaid-> paid, this will disable options like edit.
+
 
 
 Route::post('/{locale}/invoice/store',   function ($locale, Request  $request) {

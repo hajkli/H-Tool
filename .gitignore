@@ -19,3 +19,4 @@ bin-release/
 # should NOT be excluded as they contain compiler settings and other important
 # information for Eclipse / Flash Builder.
 storage/invoices/1723.pdf
+.idea/workspace.xml

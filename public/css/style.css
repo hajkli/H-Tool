@@ -109,6 +109,15 @@ h1 {
 #addnew{
     margin-bottom: 25px;
 }
+.btn.paid{
+    margin-top: 80px;
+}
+.btn-disabled.paid{
+    background: #c1c1c1;
+    color:#000
+}
+.btn-disabled.paid:hover, .btn-disabled.paid:focus, .btn-disabled.paid:active{
+    cursor: default;
+}
 .thin-border-bottom{
-
 }

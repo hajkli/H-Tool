@@ -100,13 +100,6 @@
           </mappings>
         </serverdata>
       </paths>
-      <paths name="visi.sk">
-        <serverdata>
-          <mappings>
-            <mapping local="$PROJECT_DIR$" web="/" />
-          </mappings>
-        </serverdata>
-      </paths>
       <paths name="visi.sk (1)">
         <serverdata>
           <mappings>
@@ -115,6 +108,13 @@
         </serverdata>
       </paths>
       <paths name="visi.sk - navia">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="visi.sk tatryvet">
         <serverdata>
           <mappings>
             <mapping local="$PROJECT_DIR$" web="/" />

@@ -20,7 +20,9 @@
         <form id="add-form" class=" form-center" action="/sk/invoice/update" method="post">
             <fieldset>
                 {{ csrf_field() }}
-                <input name="year" id="year" type="text" value="{{$curYear}}">
+                <input name="year" id="year" type="text" class="hidden-input" value="{{$curYear}}">
+                <input name="id" id="id" class="hidden-input" type="text" value="{{$invoice->id}}">
+
                 <div class="col-sm-6">
                     <h2>Invoice parameters</h2>
                     <div class="form-group">
@@ -177,7 +179,7 @@
                 <br>
 
                 <div class="text-center col-sm-12">
-                    <button type="submit" value="create" name="send" id="send" class="btn btn-primary">send</button>
+                    <button type="submit" value="update" name="send" id="send" class="btn btn-primary">send</button>
                 </div>
 
             </fieldset>

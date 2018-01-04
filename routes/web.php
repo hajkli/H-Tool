@@ -112,6 +112,8 @@ Route::get('/sk/invoice/{invoiceId}', 'InvoiceController@detail'); //invoice det
 
 Route::get('/sk/invoice/{invoiceId}/edit', 'InvoiceController@edit');
 
+
+
 Route::get('/sk/invoice/{invoiceId}/download', 'InvoiceController@download'); //invoice pdf downloader
 
 Route::get('/sk/invoice/{invoiceId}/preview', 'InvoiceController@preview'); //invoice pdf preview before download
@@ -125,4 +127,10 @@ Route::get('/sk/invoice/{invoiceId}/paid', 'InvoiceController@paid'); //Change i
 Route::post('/{locale}/invoice/store',   function ($locale, Request  $request) {
   App::setLocale($locale);
   return app()->make('\App\Http\Controllers\InvoiceController')->callAction('store', $parameters = ['request' => $request]);
+});
+
+
+Route::post('/{locale}/invoice/update',   function ($locale,Request  $request) {
+  App::setLocale($locale);
+  return app()->make('\App\Http\Controllers\InvoiceController')->callAction('update', $parameters = ['request' => $request]);
 });

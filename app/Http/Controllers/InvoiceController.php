@@ -220,6 +220,9 @@ class InvoiceController extends Controller
         $price = explode(", ", $invoice->price);
 
 
+
+
+
         if(isset($invoiceId)){
             return view('edit_invoice',['invoice' => $invoice, 'data' => $newCode,'curYear'=>$currentYear, 'items' => $items, 'price' => $price ]);
         } else {
@@ -234,15 +237,40 @@ class InvoiceController extends Controller
     {
 
         $invoices =\App\Invoice::find($request->input('id'));
-        $invoices->name = $request->input('name');
-        $invoices->desc = $request->input('desc');
 
-        if($invoices->validate() && $invoices->save()){
+        $items = $request->input('items');
+        $implodetItems = implode(", ", $items);
+
+        $price = $request->input('price');;
+        $implodetPrice = implode(", ",$price);
+
+        $invoices->name = $request->input('name');
+        $invoices->items = $implodetItems;
+        $invoices->price = $implodetPrice;
+        $invoices->date_of_invoicing = $request->input('date_of_invoicing');
+        $invoices->due_date = $request->input('due_date');
+        $invoices->code = $request->input('code');
+        $invoices->symbol = $request->input('symbol');
+
+        $invoices->customer = $request->input('customer');
+        $invoices->nameCustomer = $request->input('nameCustomer');
+        $invoices->street = $request->input('street');
+        $invoices->city = $request->input('city');
+        $invoices->zip = $request->input('zip');
+        $invoices->ico = $request->input('ico');
+        $invoices->dic = $request->input('dic');
+        $invoices->dic_dph = $request->input('dic-dph');
+
+        $invoices->year = $request->input('year');
+
+
+
+
+
+        if($invoices->save()){
             return redirect('/sk/listall')->with('status', 'success');
         }else{
             return view('edit-task',['model' => $invoices]);
-
-            // return redirect("/sk/task/edit/$id")->with('status', 'error');
         }
     }
 }

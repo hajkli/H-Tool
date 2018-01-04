@@ -6,8 +6,21 @@ bin-release/
 
 # Other files and folders
 .settings/
-.storage/invoices/*
-.idea/*
+/.storage/invoices/*
+/.idea/*
+
+/node_modules
+/public/hot
+/public/storage
+/storage/*.key
+/vendor
+/.idea
+/.vagrant
+Homestead.json
+Homestead.yaml
+npm-debug.log
+yarn-error.log
+.env
 
 # Executables
 *.swf
@@ -20,6 +33,7 @@ bin-release/
 # information for Eclipse / Flash Builder.
 storage/invoices/1723.pdf
 .idea/workspace.xml
-.idea/workspace.xml
-storage/invoices/ignore
+
+/storage/invoices/ignore
+
 .idea/workspace.xml

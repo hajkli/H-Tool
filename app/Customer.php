@@ -13,7 +13,7 @@ class Customer extends Model
 
   protected $table = 'crud_customer';
 
-  public $valMsg = array('name'=>'','street'=>'','city'=>'','zip'=>'','iban'=>'','ico'=>'','dic'=>'','dic-dph'=>'');
+  public $valMsg = array('name'=>'','street'=>'','city'=>'','zip'=>'','iban'=>'','ico'=>'','dic'=>'','dic_dph'=>'');
 
   function validate(){
   		if(strlen($this->name) < 1){

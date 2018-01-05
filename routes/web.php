@@ -134,3 +134,9 @@ Route::post('/{locale}/invoice/update',   function ($locale,Request  $request) {
   App::setLocale($locale);
   return app()->make('\App\Http\Controllers\InvoiceController')->callAction('update', $parameters = ['request' => $request]);
 });
+
+/* Invoice  */
+Route::get('{locale}/customer/listall',   function ($locale) {
+  App::setLocale($locale);
+  return app()->make('\App\Http\Controllers\CustomerController')->callAction('index', $parameters = array());
+});

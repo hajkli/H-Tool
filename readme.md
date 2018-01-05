@@ -10,6 +10,9 @@ To do list:
   <li>Create customer section</li>
   <li>Create connection bewteen invoice creating form and lists of customers whit autocomplete</li>
   <li>Create dashboard for invoices and tasks</li>
+  <li>Editable user profiles whit information for invoicing</li>
+  <li>Sending created invoice to e-mail</li>
+  <li>Rewrite models from old-schoold way and use migration way</li>
   <li>Polish code</li>
   <li>Improve solutions and make it more Laravel</li>
 </ul>

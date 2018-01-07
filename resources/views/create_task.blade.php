@@ -16,18 +16,31 @@
     </div>
 @endif
 
-    <form id="add-form" action="/sk/task/store" method="post">
-        {{ csrf_field() }}
-        <label for="name">Task name</label>
-        <input type="text" name="name" value=""
-               class="form-control">
-        <br>
-        <label for="desc">Task description</label>
-      <textarea name="desc" id="desc" cols="30" class="form-control"
-                rows="10"></textarea>
-        <button type="submit" value="create" name="send"
-                id="send" class="btn btn-primary">send</button>
-    </form>
+
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
+
+    {!! Form::open(['url' => '/sk/task/store', 'id' => 'add-form']) !!}
+
+        {!! Form::label('name', 'Task name') !!}
+        {!! Form::text('name', null, ['class' => 'form-control']) !!}
+            <br><br>
+        {!! Form::label('desc', 'Task name') !!}
+        {!! Form::textarea('desc', null, ['class' => 'form-control', 'rows' => '10', 'cols' => '30', 'id' => 'desc']) !!}
+
+        {!! Form::button('Send', ['type' => 'submut', 'class' => 'btn btn-primary']) !!}
+
+    {!! Form::close() !!}
+
+
 </div>
 
     @endsection

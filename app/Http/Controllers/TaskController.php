@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 //use App\Task;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 
 class TaskController extends Controller
@@ -92,7 +93,19 @@ class TaskController extends Controller
         $tasks->name = $request->input('name');
         $tasks->desc = $request->input('desc');
 
-        if($tasks->validate() && $tasks->save()){
+        $validator = Validator::make($request->all(),[
+            'name' => ['required', 'min:5'],
+            'desc'=> ['required', 'min:15']
+        ]);
+
+        if($validator->fails()){
+            return back()
+              ->withErrors($validator)
+              ->withInput();
+
+        }
+
+        if($tasks->save()){
             return redirect('/sk/listall')->with('status', 'created');
         }else{
             return redirect("/sk/task/create")->with('status', 'not_created');
